@@ -1,112 +1,476 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>John Brence S. Condesa — Portfolio</title>
-  <meta name="description" content="Simple, responsive portfolio demo." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>John Brence Condesa — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">BC</div>
-        <div>
-          <div style="font-weight:700">John Brence S. Condesa</div>
-          <div style="font-size:12px;color:var(--muted)">Computer Science • Web Developer</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Brence<span>.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7 order-2 order-lg-1">
+        <span class="hero-label">Available for hire</span>
+        <h1 class="hero-title">
+          Hi, I'm<br>
+          <span class="accent-text">John Brence</span> <span class="underline-word">Condesa</span>
+        </h1>
+        <p class="hero-sub">Front-End developer &amp; UI designer crafting digital experiences that are fast, beautiful, and purposeful.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-ink">View My Work</a>
+          <a href="#contact" class="btn-ghost">Let's Talk</a>
         </div>
       </div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="intro">
-          <h1>Hi — I'm Brence. I build clean web apps & tools.</h1>
-          <p>Front-end & small backend projects. I enjoy readable code, simple UI, and turning ideas into working prototypes.</p>
-          <div class="cta">
-            <a class="btn" href="#contact">Get in touch</a>
-            <a class="mutebtn" href="#projects">See projects</a>
+      <div class="col-lg-5 order-1 order-lg-2">
+        <div class="hero-image-wrap">
+          <div class="hero-stats">
+            <strong>2+</strong>
+            Years Experience
+          </div>
+          <img
+            src="images/profile.jpg"
+            alt="John Brence Condesa"
+            class="hero-avatar"
+          />
+          <div class="hero-badge">
+            <i class="bi bi-patch-check-fill me-1"></i> Open to Work
           </div>
         </div>
-
-        <aside class="profile">
-          <div class="avatar"><img src="images/profile.jpg" alt="photo" class="photo"></div>
-          <div class="meta">Based in Philippines • Available for freelance & collaboration</div>
-        </aside>
-      </section>
-
-      <section id="projects">
-        <h2 style="margin:0 0 14px">Selected projects</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Inventory Manager</h3>
-            <p>Desktop-like web app to manage product stock, generated reports, and export data (C#, Django + SQLite demo).</p>
-          </article>
-
-          <article class="card">
-            <h3>Algorithm Visualizer</h3>
-            <p>Interactive page showing sorting and searching algorithms with step-by-step visualization.</p>
-          </article>
-
-          <article class="card">
-            <h3>Personal Blog (Static)</h3>
-            <p>Fast static blog that supports markdown and code snippets. Deployed to GitHub Pages.</p>
-          </article>
-
-          <article class="card">
-            <h3>Calculator Suite</h3>
-            <p>Collection of converters and calculators: base conversion (2's complement), integrals helper, and more.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="skills">
-        <h2 style="margin:0 0 14px">Skills</h2>
-        <div class="card">
-          <div class="skills">
-            <span class="skill">HTML</span>
-            <span class="skill">CSS</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">C#</span>
-            <span class="skill">Python</span>
-            <span class="skill">Django</span>
-            <span class="skill">SQL</span>
-            <span class="skill">Git</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <h2 style="margin:0 0 14px">Contact</h2>
-        <div class="card" style="display:grid;grid-template-columns:1fr;gap:10px">
-          <p style="margin:0 0 6px;color:var(--muted)">Want to work together? Send a message:</p>
-          <form onsubmit="event.preventDefault();alert('This is a demo — replace with your real form or mailto link.');">
-            <input name="name" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:8px" required>
-            <input name="email" placeholder="Your email" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:8px" required>
-            <textarea name="msg" placeholder="Message" rows="4" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:8px" required></textarea>
-            <div style="display:flex;gap:8px">
-              <button class="btn" type="submit">Send</button>
-              <a class="mutebtn" href="mailto:you@example.com">Email me</a>
-            </div>
-          </form>
-        </div>
-      </section>
-
-    </main>
-
-    <footer>
-      © <span id="year"></span> John Brence S. Condesa — Built with ♥
-    </footer>
+      </div>
+    </div>
   </div>
+</section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-5 reveal">
+        <div class="about-img-wrap">
+          <img
+            src="images/p4.jpg"
+            alt="About Brence"
+            class="about-img"
+          />
+          <div class="about-chip">Based in Puerto Princesa, Philippines</div>
+        </div>
+      </div>
+      <div class="col-lg-7 ps-lg-5 reveal">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title mt-2">Turning ideas into<br>digital reality.</h2>
+        <div class="section-divider"></div>
+        <p class="about-text mb-4">
+          I'm a computer science student with a passion for design systems and clean code. I believe great software is as much about how it looks and feels as how it works under the hood. When I'm not writing code, I'm sketching interfaces, exploring new tech stacks, or hunting for the perfect coffee shop.
+        </p>
+        <ul class="info-list mb-4">
+          <li><span>Name</span><span>John Brence S. Condesa</span></li>
+          <li><span>Location</span><span>Puerto Princesa City, Palawan, Philippines</span></li>
+          <li><span>Email</span><span>condesajohnbrencce@gmail.com</span></li>
+          <li><span>Degree</span><span>BS Computer Science</span></li>
+          <li><span>Status</span><span style="color:var(--accent);font-weight:500;">Available for freelance</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container position-relative">
+    <div class="row justify-content-center mb-5 reveal">
+      <div class="col-lg-7 text-center">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title mt-2">My Skill Set</h2>
+        <div class="section-divider mx-auto"></div>
+        <p style="color:rgba(255,255,255,0.5);font-weight:300;">A curated overview of technologies and tools I work with</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/c-sharp.png" alt="" style="width:15%;height:15%;"><img src="images/c-.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">C Language</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">C# & C++</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60" style="width:0%"></div></div>
+          <div class="skill-pct">60%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/java-script.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">JavaScript / TypeScript</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Modern ES6+, type safety</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="50" style="width:0%"></div></div>
+          <div class="skill-pct">50%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/python.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">Python / Django</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">APIs, automation, data pipelines</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75" style="width:0%"></div></div>
+          <div class="skill-pct">75%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/ui.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">UI/UX Design</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Figma, design systems, prototyping</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80" style="width:0%"></div></div>
+          <div class="skill-pct">80%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/swift.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">Swift / Dart</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Cross-platform mobile apps</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="40" style="width:0%"></div></div>
+          <div class="skill-pct">40%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/html.png" alt="" style="width:15%;height:15%;"><img src="images/css-3.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">HTML / CSS</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">CI/CD, Docker, Kubernetes</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80" style="width:0%"></div></div>
+          <div class="skill-pct">80%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/database-storage.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">PostgreSQL / MongoDB</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Relational &amp; document stores</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65" style="width:0%"></div></div>
+          <div class="skill-pct">65%</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="skill-card">
+          <span class="skill-icon"><img src="images/physics.png" alt="" style="width:15%;height:15%;"></span>
+          <div class="skill-name">React Native</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Cross-platform mobile apps</p>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="30" style="width:0%"></div></div>
+          <div class="skill-pct">30%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5 reveal">
+      <div class="col-lg-7">
+        <span class="section-tag">My Work & Certificates</span>
+        <h2 class="section-title mt-2">Projects</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="images/cozy.png" alt="" style="width:100%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
+            <div class="project-title">cozycup-cafe</div>
+            <p class="project-desc">This project is the official website for CozyCup Café, featuring information about our history, menu, and online ordering system</p>
+            <div class="project-links">
+              <a href="https://github.com/n3mo1101/cc6-cozycup-cafe" target="_blank" class="btn-project btn-project-ghost"><i class="bi bi-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="https://static.vecteezy.com/system/resources/previews/020/783/212/original/organization-icon-design-free-vector.jpg" alt="" style="width:95%;height:95%;"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">SCSS</span><span class="project-tag">HTML</span><span class="project-tag">Python</span><span class="project-tag">JavaScript</span><span class="project-tag">CSS</span></div>
+            <div class="project-title">PSUSphere</div>
+            <p class="project-desc">The PSU Sphere is a web-based administrative system designed to manage and track academic and organizational data within a university.</p>
+            <div class="project-links">
+              <a href="https://github.com/n3mo1101/cc6_PSUSphere" target="_blank" class="btn-project btn-project-ghost"><i class="bi bi-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="https://static.vecteezy.com/system/resources/previews/016/158/704/non_2x/notepad-icon-outline-mask-protection-vector.jpg" alt="" style="width:100%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">SCSS</span><span class="project-tag">HTML</span><span class="project-tag">Python</span><span class="project-tag">JavaScript</span><span class="project-tag">CSS</span></div>
+            <div class="project-title">Hangarin: Task Manager</div>
+            <p class="project-desc">Hangarin is a simple yet powerful Django-based web application that helps users stay organized by managing daily tasks and tracking progress.</p>
+            <div class="project-links">
+              <a href="https://github.com/Bitr3e/Hangarin" target="_blank" class="btn-project btn-project-ghost"><i class="bi bi-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="https://purepng.com/public/uploads/large/purepng.com-weather-iconsymbolsiconsapple-iosiosios-8-iconsios-8-721522596142qx4ep.png" alt="" style="width:95%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag">Dart</span><span class="project-tag">Swift</span></div>
+            <div class="project-title">Weather_app</div>
+            <p class="project-desc">A simple weather application that provides current weather information and forecasts for any location. This project is a starting point for a Flutter application.</p>
+            <div class="project-links">
+              <a href="https://github.com/Bitr3e/Weather_app" target="_blank" class="btn-project btn-project-ghost"><i class="bi bi-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- certificates -->
+<section id="certificates">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5 reveal">
+      <div class="col-lg-7">
+        <h2 class="section-title mt-2">Certificates</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="images/c1.png" alt="" style="width:100%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-title">Develop a Company Website with Wixe</div>
+            <p class="project-desc"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="images/c2.png" alt="" style="width:100%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-title">Google AI Essentials Specialization</div>
+            <p class="project-desc"></p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="row justify-content-center mb-5 reveal">
+      <div class="col-lg-7 text-center">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title mt-2">Let's Build Something<br>Together</h2>
+        <div class="section-divider mx-auto"></div>
+        <p style="color:var(--muted);font-weight:300;">Have a project in mind or just want to say hello? My inbox is always open.</p>
+      </div>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-5 reveal">
+        <div class="contact-info-block" style="background-color: rgb(64, 63, 62);">
+          <span class="section-tag">Contact Info</span>
+          <h3 class="mt-3">Let's talk about your project.</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="bi bi-envelope-fill" style="color:var(--accent)"></i></div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">condesajohnbrence@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="bi bi-telephone-fill" style="color:var(--accent)"></i></div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-value">(63) 938-6064-352</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="bi bi-geo-alt-fill" style="color:var(--accent)"></i></div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-value">Puerto Princesa City, Palawan, Philippines</div>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/Bitr3e" class="social-btn" target="_blank"><img src="images/github.png" alt="" style="width:100%;height:100%;"></a>
+            <a href="t.me/Breence" class="social-btn" target="_blank"><img src="images/telegram.png" alt="" style="width:100%;height:100%;"></a>
+            <a href="https://www.facebook.com/share/1CRNe2NVKn/" class="social-btn" target="_blank"><img src="images/facebook.png" alt="" style="width:100%;height:100%;"></a>
+            <a href="https://www.instagram.com/brnc3r.cons?igsh=b2NleWF5ZXlheWh2" class="social-btn" target="_blank"><img src="images/instagram.png" alt="" style="width:100%;height:100%;"></a>
+            <a href="https://m.me/Brence.Condesa.9" class="social-btn" target="_blank"><img src="images/messenger.png" alt="" style="width:100%;height:100%;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="contact-form-wrap">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control" placeholder="Juan">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-control" placeholder="Dela Cruz">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" placeholder="example@email.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Subject</label>
+              <select class="form-select">
+                <option selected disabled>Select a topic...</option>
+                <option>Freelance Project</option>
+                <option>Full-time Opportunity</option>
+                <option>Collaboration</option>
+                <option>Just Saying Hi</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="5" placeholder="Tell me about your project or idea..."></textarea>
+            </div>
+            <div class="col-12">
+              <button type="button" class="btn-submit" id="submitBtn">
+                Send Message <i class="bi bi-send-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background-color: rgb(64, 63, 62);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="footer-brand">Brence<span>.</span></div>
+        <p style="font-size:0.88rem;margin-top:0.5rem;max-width:380px;">
+          Crafting purposeful digital products with clean code and intentional design.
+        </p>
+        <nav class="footer-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">  
+        <div class="social-links justify-content-lg-end">
+          <a href="https://github.com/Bitr3e" class="social-btn" target="_blank"><img src="images/github.png" alt="" style="width:100%;height:100%;"></a>
+          <a href="t.me/Breence" class="social-btn" target="_blank"><img src="images/telegram.png" alt="" style="width:100%;height:100%;"></a>
+          <a href="https://www.facebook.com/share/1CRNe2NVKn/" class="social-btn" target="_blank"><img src="images/facebook.png" alt="" style="width:100%;height:100%;"></a>
+          <a href="https://www.instagram.com/brnc3r.cons?igsh=b2NleWF5ZXlheWh2" class="social-btn" target="_blank"><img src="images/instagram.png" alt="" style="width:100%;height:100%;"></a>
+          <a href="https://m.me/Brence.Condesa.9" class="social-btn" target="_blank"><img src="images/messenger.png" alt="" style="width:100%;height:100%;"></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="row align-items-center">
+      <div class="col-md-6 footer-copy">
+        &copy; 2026 John Brence Condesa. Built with <span style="color:var(--accent)">&#9829;</span> and Bootstrap.
+      </div>
+      <div class="col-md-6 text-md-end footer-copy mt-2 mt-md-0">
+        <a href="#" style="color:inherit;text-decoration:none;">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="#" style="color:inherit;text-decoration:none;">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const skillBars = document.querySelectorAll('.skill-bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Skill bar animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const w = fill.getAttribute('data-width');
+        setTimeout(() => { fill.style.width = w + '%'; }, 300);
+        barObserver.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.2 });
+  skillBars.forEach(b => barObserver.observe(b));
+
+  // Active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  // Form submit feedback
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    this.innerHTML = '<i class="bi bi-check-circle-fill"></i> Message Sent!';
+    this.style.background = '#1a8a50';
+    setTimeout(() => {
+      this.innerHTML = 'Send Message <i class="bi bi-send-fill"></i>';
+      this.style.background = '';
+    }, 3000);
+  });
+</script>
 </body>
 </html>
