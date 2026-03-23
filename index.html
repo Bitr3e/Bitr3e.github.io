@@ -11,6 +11,165 @@
 </head>
 <body>
 
+<!-- STAR WARS WARP INTRO -->
+<div id="sw-intro" style="position:fixed;inset:0;z-index:99999;overflow:hidden;cursor:pointer;background:#000;">
+  <canvas id="warp-canvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+ 
+  <!-- Galaxy background layers -->
+  <div id="galaxy-bg" style="position:absolute;inset:0;opacity:0.55;background:
+    radial-gradient(ellipse at 30% 40%, rgba(80,20,160,0.7) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 60%, rgba(20,60,160,0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(160,40,80,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(0,80,200,0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(120,20,200,0.4) 0%, transparent 40%);
+    transition: opacity 1s;">
+  </div>
+ 
+  <!-- Nebula dust -->
+  <div style="position:absolute;inset:0;background:
+    url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    opacity:0.18;mix-blend-mode:screen;"></div>
+ 
+  <!-- Content -->
+  <div id="intro-content" style="position:relative;z-index:2;display:flex;align-items:center;justify-content:center;flex-direction:column;height:100%;padding:2rem;text-align:center;">
+    <div id="intro-long-ago" style="color:#ffe81f;font-family:'Orbitron',sans-serif;font-size:0.75rem;letter-spacing:0.3em;margin-bottom:2rem;opacity:0;transition:opacity 1s 0.5s;">
+      A LONG TIME AGO IN A GALAXY FAR, FAR AWAY....
+    </div>
+    <div id="intro-title" style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(2.5rem,9vw,6rem);color:#ffe81f;letter-spacing:0.12em;text-shadow:0 0 40px rgba(255,232,31,0.9),0 0 80px rgba(255,232,31,0.4);opacity:0;transform:scale(1.5);transition:opacity 1s 1.2s, transform 1.5s 1.2s cubic-bezier(0.16,1,0.3,1);">
+      JOHN BRENCE S. CONDESA
+    </div>
+    <div id="intro-sub" style="color:#c8d8e8;font-family:'Exo 2',sans-serif;font-size:clamp(0.85rem,2vw,1.2rem);margin-top:1.5rem;opacity:0;transition:opacity 1s 2.2s;letter-spacing:0.06em;">
+      Episode I — The Portfolio Awakens
+    </div>
+    <div id="intro-hint" style="margin-top:3.5rem;color:rgba(255,232,31,0.5);font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:0.25em;opacity:0;transition:opacity 0.8s 3s;animation:none;" class="blink-hint">
+      ⚡ CLICK TO JUMP TO HYPERSPACE ⚡
+    </div>
+  </div>
+ 
+  <style>
+    @keyframes blinkHint { 0%,100%{opacity:0.35} 50%{opacity:1} }
+    .blink-hint { animation: blinkHint 1.8s infinite; }
+  </style>
+</div>
+ 
+<script>
+(function() {
+  // WARP CANVAS
+  const canvas = document.getElementById('warp-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], animId, warping = false, warpProgress = 0;
+  const NUM_STARS = 320;
+ 
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+ 
+  function Star() {
+    this.reset = function(born) {
+      this.x = (Math.random() - 0.5) * W;
+      this.y = (Math.random() - 0.5) * H;
+      this.z = born ? Math.random() * W : W;
+      this.pz = this.z;
+      this.color = Math.random() > 0.85
+        ? `hsl(${200 + Math.random()*60},100%,90%)`
+        : `hsl(${40 + Math.random()*20},100%,90%)`;
+    };
+    this.reset(false);
+  }
+ 
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < NUM_STARS; i++) {
+      const s = new Star();
+      s.reset(true);
+      stars.push(s);
+    }
+  }
+ 
+  function draw() {
+    ctx.fillStyle = warping ? `rgba(0,0,0,${0.12 + warpProgress * 0.4})` : 'rgba(0,0,0,0.18)';
+    ctx.fillRect(0, 0, W, H);
+ 
+    const cx = W / 2, cy = H / 2;
+    const speed = warping ? 28 + warpProgress * 180 : 3.5;
+ 
+    for (let s of stars) {
+      s.pz = s.z;
+      s.z -= speed;
+ 
+      if (s.z <= 0) { s.reset(false); s.pz = s.z = W; }
+ 
+      const sx = (s.x / s.z) * W + cx;
+      const sy = (s.y / s.z) * H + cy;
+      const px = (s.x / s.pz) * W + cx;
+      const py = (s.y / s.pz) * H + cy;
+ 
+      const size = Math.max(0.3, (1 - s.z / W) * (warping ? 4 : 2.5));
+      const alpha = Math.min(1, (1 - s.z / W) * 1.8);
+ 
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(sx, sy);
+      ctx.strokeStyle = s.color.replace(')', `,${alpha})`).replace('hsl', 'hsla');
+      ctx.lineWidth = size;
+      ctx.stroke();
+    }
+ 
+    if (warping) {
+      warpProgress = Math.min(1, warpProgress + 0.025);
+      // Blue hyperspace vignette
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * 0.7);
+      grad.addColorStop(0, `rgba(0,100,255,${warpProgress * 0.15})`);
+      grad.addColorStop(0.5, `rgba(0,50,200,${warpProgress * 0.1})`);
+      grad.addColorStop(1, `rgba(0,0,80,${warpProgress * 0.5})`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+ 
+      if (warpProgress >= 1) {
+        setTimeout(exitIntro, 200);
+        return;
+      }
+    }
+ 
+    animId = requestAnimationFrame(draw);
+  }
+ 
+  function exitIntro() {
+    cancelAnimationFrame(animId);
+    const intro = document.getElementById('sw-intro');
+    intro.style.transition = 'opacity 0.6s';
+    intro.style.opacity = '0';
+    setTimeout(() => { intro.style.display = 'none'; }, 650);
+  }
+ 
+  // Click triggers hyperspace warp
+  document.getElementById('sw-intro').addEventListener('click', function() {
+    if (warping) return;
+    warping = true;
+    warpProgress = 0;
+  });
+ 
+  // Fade in intro elements
+  window.addEventListener('DOMContentLoaded', function() {
+    resize();
+    initStars();
+    draw();
+    setTimeout(() => { document.getElementById('intro-long-ago').style.opacity = '1'; }, 500);
+    setTimeout(() => {
+      const t = document.getElementById('intro-title');
+      t.style.opacity = '1';
+      t.style.transform = 'scale(1)';
+    }, 1200);
+    setTimeout(() => { document.getElementById('intro-sub').style.opacity = '1'; }, 2200);
+    setTimeout(() => { document.getElementById('intro-hint').style.opacity = '1'; }, 3000);
+  });
+ 
+  window.addEventListener('resize', () => { resize(); initStars(); });
+})();
+</script>
+
+
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg">
   <div class="container">
@@ -76,7 +235,7 @@
       <div class="col-lg-5 reveal">
         <div class="about-img-wrap">
           <img
-            src="images/p3.jpg"
+            src="images/p4.jpg"
             alt="About Brence"
             class="about-img"
           />
@@ -153,8 +312,8 @@
       <div class="col-sm-6 col-lg-3 reveal">
         <div class="skill-card">
           <span class="skill-icon"><img src="images/swift.png" alt="" style="width:15%;height:15%;"></span>
-          <div class="skill-name">Swift / Dart</div>
-          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Cross-platform mobile apps</p>
+          <div class="skill-name">Swift</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Modern, open-source, general-purpose programming language</p>
           <div class="skill-bar-track"><div class="skill-bar-fill" data-width="40" style="width:0%"></div></div>
           <div class="skill-pct">40%</div>
         </div>
@@ -163,7 +322,7 @@
         <div class="skill-card">
           <span class="skill-icon"><img src="images/html.png" alt="" style="width:15%;height:15%;"><img src="images/css-3.png" alt="" style="width:15%;height:15%;"></span>
           <div class="skill-name">HTML / CSS</div>
-          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">CI/CD, Docker, Kubernetes</p>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:300;">Structure and styling for web pages</p>
           <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80" style="width:0%"></div></div>
           <div class="skill-pct">80%</div>
         </div>
@@ -298,6 +457,15 @@
           </div>
         </div>
       </div>
+      <div class="col-md-6 col-xl-4 reveal">
+        <div class="project-card">
+          <div class="project-thumb-placeholder"><img src="images/c3.png" alt="" style="width:100%;height:100%;"></div>
+          <div class="project-body">
+            <div class="project-title">Google Prompting Essentials</div>
+            <p class="project-desc"></p>
+          </div>
+        </div>
+      </div>
       
     </div>
   </div>
@@ -350,13 +518,9 @@
       <div class="col-lg-7 reveal">
         <div class="contact-form-wrap">
           <div class="row g-3">
-            <div class="col-sm-6">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-control" placeholder="Juan">
-            </div>
-            <div class="col-sm-6">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" placeholder="Dela Cruz">
+            <div class="col-12">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" placeholder="FirstName, MiddleName, LastName">
             </div>
             <div class="col-12">
               <label class="form-label">Email Address</label>
@@ -417,12 +581,10 @@
     <hr class="footer-divider"/>
     <div class="row align-items-center">
       <div class="col-md-6 footer-copy">
-        &copy; 2026 John Brence Condesa. Built with <span style="color:var(--accent)">&#9829;</span> and Bootstrap.
+        &copy; 2026 John Brence Condesa.
       </div>
       <div class="col-md-6 text-md-end footer-copy mt-2 mt-md-0">
-        <a href="#" style="color:inherit;text-decoration:none;">Privacy Policy</a>
-        &nbsp;&middot;&nbsp;
-        <a href="#" style="color:inherit;text-decoration:none;">Terms of Use</a>
+        <a href="#home" style="color:inherit;text-decoration:none;">Back to Top</a>
       </div>
     </div>
   </div>
